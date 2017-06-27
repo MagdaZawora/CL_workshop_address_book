@@ -1,0 +1,21 @@
+{% extends 'core/base.html' %}
+
+{% block title %}
+    Lista kontaktów
+{% endblock %}
+
+{% block content %}
+<form action="#" method="POST">
+    {% for contact in contacts %}
+    <p><a href="/show_person/{{ contact.id}}">{{ contact.name }}</a>&nbsp;{{ contact.surname }}&nbsp;
+            <a href="/edit_person/{{ contact.id }}">edytuj</a>&nbsp;
+            <a href="/delete_person/{{ contact.id }}">usuń</a>
+        </p>
+    {% endfor %}
+
+    <h4><a href="/add_new/">Dodaj nowy kontakt</a></h4>
+    {% csrf_token %}
+</form>
+
+    {{ result }}
+{% endblock %}

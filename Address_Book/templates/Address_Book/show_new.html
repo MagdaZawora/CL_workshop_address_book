@@ -1,0 +1,24 @@
+{% extends 'core/base.html' %}
+
+{% block title %}
+    Nowy kontakt
+{% endblock %}
+
+{% block content %}
+    <h3>{{person.name}} {{person.surname}}</h3>
+    {% for address in addresses %}
+        <p>{{ address.town }} {{ address.street }} {{ address.street_number }} {{address.flat_number }}</p>
+    {% endfor %}
+    {% for phone in phones %}
+        <p>{{ phone.phone_number }}&nbsp;{{ phone.phone_type }}</p>
+    {% endfor %}
+    {% for email in emails %}
+    <p>{{ email.email }}&nbsp;{{ email.email_type }}</p>
+    {% endfor %}
+    <h4><a href="/edit_person/{{ person.id }}">edytuj</a></h4>
+
+    {% csrf_token %}
+
+    {{ result }}
+
+{% endblock %}

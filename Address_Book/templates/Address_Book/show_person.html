@@ -1,0 +1,27 @@
+{% extends 'core/base.html' %}
+
+{% block title %}
+    Dane kontaktowe
+{% endblock %}
+
+{% block content %}
+    <h3>{{ person.name }} {{ person.surname }}</h3>
+    {% for address in addresses %}
+        <p>Miasto: {{ address.town }}<br />Ulica: {{ address.street }}<br />Numer domu: {{ address.street_number }}<br />Numer mieszkania: {{ address.flat_number }}</p>
+    {% endfor %}
+
+    {% for phone in phones %}
+        <p>Numer telefon: {{ phone.phone_number }}<br />Prywatny/służbowy: {{ phone.phone_type }}</p>
+    {% endfor %}
+
+    {% for email in emails %}
+        <p>e-mail: {{ email.email }}<br />Prywatny/służbowy: {{ email.email_type }}</p>
+    {% endfor %}
+
+    {% csrf_token %}
+
+    {{ result }}
+
+{% endblock %}
+
+<a href="/edit_person_get/{{ contact.id }}">edytuj</a>

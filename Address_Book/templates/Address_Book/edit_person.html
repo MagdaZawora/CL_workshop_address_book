@@ -1,0 +1,34 @@
+{% extends 'core/base.html' %}
+
+{% block title %}
+    Edycja kontaktu
+{% endblock %}
+
+{% block content %}
+
+    <h3>{{person.name}} {{person.surname}}</h3>
+    {% for address in addresses %}
+        Miasto: <input type="text" name="address_town_{{ forloop.counter }}" value="{{ address.town }}"><br />
+        Ulica: <input type="text" name="address_street_{{ forloop.counter }}" value="{{ address.street }}"><br />
+        Numer domu: <input type="text" name="address_street_number_{{ forloop.counter }}" value="{{ address.street_number }}"><br />
+        Numer mieszkania: <input type="text" name="address_flat_number_{{ forloop.counter }}" value="{{ address.flat_number }}"><br /><br />
+    {% endfor %}
+
+    {% for phone in phones %}
+        Numer telefonu: <input type="text" name="phone_number_{{ forloop.counter }}" value="{{ phone.phone_number }}"><br />
+        Prywatny/służbowy: <input type="text" name="phone_type_{{ forloop.counter }}" value="{{ phone.phone_type }}"><br />
+    {% endfor %}
+
+    {% for email in emails %}
+        e-mail: <input type="text" name="email_email_{{ forloop.counter }}" value="{{ email.email }}"><br />
+        Prywatny/służbowy: <input type="text" name="email_type_{{ forloop.counter }}" value="{{ email.email_type }}"><br />
+    {% endfor %}
+    <input type="submit" name="submit-form" value="Edytuj">
+    {% csrf_token %}
+
+
+    {{ result }}
+
+{% endblock %}
+
+
